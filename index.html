@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <!--Link do blootStrap para icone-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <link rel="stylesheet" href="css/style_main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca de Cep</title>
 </head>
+
 <body>
     <div class="content">
         <header class="header">
@@ -26,13 +28,39 @@
             </section>
             <section class="container_buscaCep" id="buscaCep">
                 <div class="buscaCep_search">
-                    <input type="text" placeholder="101101101019" id="InputUser">
-                    <button type="submit">Enviar</button>
+                    <input type="text" placeholder="65865968" id="InputUser" maxlength="8">
+
+                    <!--as outras opções (de todos os select) vão ser chamadas pelo JS-->
+                    <select name="state" id="searchState"> 
+                        <option value="" id="selectState">Cidade</option>
+                    </select>
+
+                    <select name="city" id="searchCity">
+                        <option value="" id="selectCity">Cidade</option>
+                    </select>
+
+                    <select name="log" id="searchLog">
+                        <option value="" id="selectLog">Logradouro</option>
+                    </select>
+
+                    <!--vira o botão de deletar depois de selecionado
+                    caso as informações não sejam mudadas-->
+                    <button id="Enviate">Enviar</button>
                 </div>
-                
+
                 <div class="buscaCep_display" id="displayCep">
                     <table class="display_table">
-                        
+                        <thead>
+                            <tr>
+                                <th>cep</th>
+                                <th>Logradouro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tableRow"> <!--vai receber valores (td) através do JS-->
+                                
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -54,4 +82,5 @@
 
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

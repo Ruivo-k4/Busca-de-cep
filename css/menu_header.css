@@ -1,0 +1,13 @@
+.header_menu{
+    .menu_list{
+        display: flex;
+
+        list-style: none;
+
+        a {
+            text-decoration: none;
+
+            color: var(--black);
+        }
+    }
+}

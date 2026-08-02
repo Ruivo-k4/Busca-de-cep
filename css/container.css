@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5% 0;
+
+    .container_buscaCep {
+        display: grid;
+        gap: 10%;
+
+        .buscaCep_search {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1dvw;
+
+            max-width: 50dvw;
+
+            .search_input {
+                padding: 0 5%;
+            }
+        }
+        /*tem que arrumar a rolagen disso*/
+        .buscaCep_display {
+            max-height: 5dvh;
+
+            .display_table {
+                border-collapse: collapse;
+                
+                overflow-y: auto;
+                tr {
+                    th {
+                        border: solid var(--black) 1px;
+                        padding: 0.5dvw;
+                    }
+                }
+            }
+        }
+    }
+}

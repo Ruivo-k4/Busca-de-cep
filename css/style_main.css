@@ -1,5 +1,6 @@
 @import url(menu_header.css);
 @import url(colors_variables.css);
+@import url(container.css);
 
 * {
     padding: 0;
@@ -11,6 +12,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
+    gap: 2%;
     
     grid-template-areas:
     "header header"
@@ -25,9 +27,19 @@
     
     .container {
         grid-area: container;
+
+        margin: 0 5%;
     }
 
     .footer {
         grid-area: footer;
+
+        ul {
+            list-style: none;
+        }
+    }
+
+    .header, .footer {
+        padding: 0 3%;
     }
 }

@@ -26,46 +26,51 @@
             <section class="container_head">
                 <h1>Titulo ai</h1>
             </section>
+
             <section class="container_buscaCep" id="buscaCep">
+                <!--Barra de pesquisa-->
                 <div class="buscaCep_search">
-                    <input type="text" placeholder="65865968" id="InputUser" maxlength="8">
+                    <input type="text" placeholder="65865968" id="InputUserCep" maxlength="8" class="search_input">
 
                     <!--as outras opções (de todos os select) vão ser chamadas pelo JS-->
-                    <select name="state" id="searchState"> 
-                        <option value="" id="selectState">Estado</option>
+                    <select name="state" id="searchState" class="search_select">
+                        <option value="" id="selectState">UF</option>
                     </select>
 
-                    <select name="city" id="searchCity">
-                        <option value="" id="selectCity">Cidade</option>
-                    </select>
+                    <input type="text" placeholder="Santana de Parnaíba" id="InputUserCity" maxlength="100"
+                        class="search_input">
 
-                    <select name="log" id="searchLog">
-                        <option value="" id="selectLog">Logradouro</option>
-                    </select>
+                    <input type="text" placeholder="Avenida Paulista" id="InputUserLog" maxlength="100"
+                        class="search_input">
 
                     <!--vira o botão de deletar depois de selecionado
                     caso as informações não sejam mudadas-->
-                    <button id="searchEnviate">Enviar</button>
+                    <button id="searchEnviate" class="enviar">Buscar</button>
                 </div>
 
+                <!--Local de exibição-->
                 <div class="buscaCep_display" id="displayCep">
-                    <table class="display_table">
+                    <table class="display_table" >
                         <thead>
                             <tr>
-                                <th>cep</th>
+                                <th>Cep</th>
+                                <th>UF</th>
+                                <th>Cidade</th>
+                                <th>Bairro</th>
                                 <th>Logradouro</th>
-                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr id="tableRow"> <!--vai receber valores (td) através do JS-->
-                                
-                            </tr>
+                           
+                        <tbody>  <!--vai receber valores (tr, td) através do JS-->
+                            
                         </tbody>
                     </table>
                 </div>
             </section>
-            <section class="container_footer"></section>
+
+            <section class="container_footer">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsa unde sed minima dolorum nihil, reiciendis eum qui earum distinctio quos, incidunt hic accusamus. Rem dolorem quasi deserunt architecto veniam!</p>
+            </section>
         </main>
         <footer class="footer">
             <div class="footer_info"></div>

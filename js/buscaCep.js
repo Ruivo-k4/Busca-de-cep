@@ -10,18 +10,42 @@
 let buscaCepDisplay = document.querySelector("#displayCep");//area que vai mostrar os dados
 let buscaCepSearch = document.querySelector(".buscaCep_search");//onde está as ferramentas de pesquisa
 
-let inputUser = document.querySelector("#InputUser");
-let inputUser_value = inputUser.value; //captura o que foi digitado
+//#region local dos inputs do buscaCep_search
+/*
+vamos usar o trim() na hora de capturar os valoes.
+Permite a captura atualizada e sem espacos em branco,
+só nas pontas, mas tá bom.
+*/
+let inputCep = document.querySelector("#InputUserCep");
+let inputUf = document.querySelector("#selectState");
+let inputCity = document.querySelector("#InputUserCity");
+let inputLog = document.querySelector("#InputUserLog");
+
+let input_vet = [inputCep, inputUf, inputCity, inputLog];
+
+//#endregion
 
 let buscaCepBtn = document.querySelector("#searchEnviate");
 
-if(buscaCepDisplay){
-    buscaCepBtn.addEventListener('click', () => {
-        buscaCepBtn.innerHTML = "Apagar";
-        
-        buscaCepSearch.addEventListener('input', () => {
-            buscaCepBtn.innerHTML = "Enviar";
-        });
+if (buscaCepDisplay) {
+    input_vet.forEach((element, index) => {
+        if (element.value != "") {
+            buscaCepBtn.addEventListener('click', () => {
+                let btn_state = buscaCepBtn.classList.toggle("deletar");
+
+                if (btn_state) { //se tem o deletar
+                    buscaCepBtn.innerHTML = "Limpar";
+                } else {
+                    buscaCepBtn.innerHTML = "Buscar";
+                    window.location.reload();
+                }
+
+                buscaCepSearch.addEventListener('input', () => {
+                    buscaCepBtn.innerHTML = "Buscar";
+                    buscaCepBtn.classList.toggle("deletar", false);
+                });
+            });
+        }
     });
 }
 //#endregion

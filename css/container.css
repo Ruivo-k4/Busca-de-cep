@@ -21,13 +21,16 @@
         }
         /*tem que arrumar a rolagen disso*/
         .buscaCep_display {
-            max-height: 5dvh;
+            min-height: 5dvh;
 
             .display_table {
                 border-collapse: collapse;
                 
                 overflow-y: auto;
-                tr {
+                #thTable {
+                    display: flex;
+                    gap: 2dvw;
+
                     th {
                         border: solid var(--black) 1px;
                         padding: 0.5dvw;

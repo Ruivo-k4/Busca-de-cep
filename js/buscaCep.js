@@ -54,22 +54,23 @@ if (buscaCepDisplay) {
             });
         }
         //#endregion
+    });
 
-        buscaCepBtn.addEventListener('click', () => {
-            let btn_state = buscaCepBtn.classList.toggle("deletar");
-
-            if (btn_state) { //se tem o deletar
-                buscaCepBtn.innerHTML = "Limpar";
-                viaCep();
-            } else {
-                window.location.reload();
-                buscaCepBtn.innerHTML = "Buscar";
-            }
-
-        });
-
+    inputCep.addEventListener('input', () => {
+        const botao = buscaCepBtn.classList.toggle("deletar", false);
         buscaCepBtn.innerHTML = "Buscar";
-        buscaCepBtn.classList.toggle("deletar", false);
+    });
+
+    buscaCepBtn.addEventListener('click', () => {
+        let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
+
+        if (btn_state) { //se tem o deletar
+            buscaCepBtn.innerHTML = "Limpar";
+            viaCep();
+        } else {
+            buscaCepBtn.innerHTML = "Buscar";
+            window.location.reload();
+        }
     });
 }
 //#endregion
@@ -93,6 +94,7 @@ titles.forEach((element) => {
 //corpo da tabela e API
 async function viaCep() {
     let cep = inputCep.value.trim();
+    
 
     let url = '';
 
@@ -124,6 +126,7 @@ async function viaCep() {
         tr.classList.add("linTable");
         //#region criando a tabela
 
+        
         dados_info.forEach((info) => {
             const td = document.createElement('td');
             td.classList.add("colTable");

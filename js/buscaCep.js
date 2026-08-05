@@ -19,7 +19,9 @@ let inputUf = document.querySelector("#searchState");
 let inputCity = document.querySelector("#InputUserCity");
 let inputLog = document.querySelector("#InputUserLog");
 
+
 //#endregion
+
 //#endregion
 
 //#region botão de envio
@@ -57,13 +59,12 @@ if (buscaCepDisplay) {
         //#endregion
     });
 
-    inputCep.addEventListener('input', () => {
+    buscaCepSearch.addEventListener('input', () => {
         const botao = buscaCepBtn.classList.toggle("deletar", false);
         buscaCepBtn.innerHTML = "Buscar";
     });
 
     buscaCepBtn.addEventListener('click', () => {
-        if()
         let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
 
         if (btn_state) { //se tem o deletar
@@ -114,7 +115,7 @@ async function viaCep() {
 
     let url = '';
 
-    if (inputCep.value.trim() !== '') {
+    if (cep !== '') {
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
@@ -135,11 +136,12 @@ async function viaCep() {
             throw new Error('CEP não encontrado.');
         }
 
+        const listaEnderecos = Array.isArray(dados) ? dados : [dados];
         const dados_info = ['cep', 'uf', 'localidade', 'bairro', 'logradouro']; //informações que irão ser capturadas
 
         //#region criando a tabela
         
-        dados.forEach((adress) => {
+        listaEnderecos.forEach((adress) => {
             const tr = document.createElement('tr');
             tr.classList.add("linTable");
 

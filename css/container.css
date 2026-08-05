@@ -1,46 +1,138 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 5% 0;
+    gap: 2rem;
+    padding: 1rem;
+    font-family: system-ui, -apple-system, sans-serif;
 
+    .container_head {
+        width: 60dvw;
+        text-align: justify;
+
+        div {
+            img {
+                width: auto;
+                height: 8dvw;
+
+                margin-bottom: 2dvh;
+            }
+        }
+
+        p {
+            #buscaCep-span, #baixar-pdf {
+                color: green;
+
+                font-weight: bold;
+
+                text-decoration: none;
+
+                transition: 0.5s;
+            }
+            
+            #baixar-pdf:hover {
+                display: inline-block; 
+                /* pq inline-block?
+
+                Ele é inline por padrão e eles não podem sofrer 
+                esse tipo de alteração pois são criados para se
+                adaptares ao tamanho do texto dentro, mas os 
+                elementos block podem, então por isso o inline-block.
+                
+                */
+                
+                transform: scale(1.2);
+                
+                margin-left: 1dvw;
+            }
+        }
+    }
+    
     .container_buscaCep {
         display: grid;
-        gap: 5%;
+        gap: 1.5rem;
 
         .buscaCep_search {
             display: grid;
             grid-template-rows: 1fr;
             grid-template-columns: repeat(5, 1fr);
             gap: 1dvw;
-
             max-width: 60dvw;
 
             .search_input {
-                padding: 0 5%;
+                padding: 0.6rem 1rem;
+                border: 1px solid #cbd5e1;
+                border-radius: 6px;
+                outline: none;
+                transition: all 0.2s;
+
+                &:focus {
+                    border-color: #4f46e5;
+                    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+                }
             }
         }
 
-        /*tem que arrumar a rolagen disso*/
         .buscaCep_display {
             width: 62dvw;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
 
             .display_table {
                 display: block;
-                /*bloco respeita altura*/
-
                 max-height: 50dvh;
                 overflow-y: auto;
-
                 border-collapse: collapse;
+                width: 100%;
 
-                overflow-y: auto;
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #94a3b8;
+                    border-radius: 3px;
+                }
 
                 th,
                 td {
-                    border: solid var(--black) 1px;
-                    padding: 0.5dvw;
+                    border-bottom: 1px solid #e2e8f0;
+                    padding: 0.75rem 1dvw;
                     min-width: 10dvw;
+                    text-align: left;
                 }
+
+                th {
+                    position: sticky;
+                    top: 0;
+                    background-color: #f8fafc;
+                    color: #475569;
+                    font-weight: 600;
+                    z-index: 1;
+                }
+
+                tbody tr:hover {
+                    background-color: #f1f5f9;
+                }
+            }
+        }
+    }
+
+    .container_footer {
+        dl {
+            width: 60dvw;
+
+            text-align: justify;
+
+            dt {
+                font-size: 2vw;
+                font-weight:bolder;
+
+                color: green;
+            }
+
+            dd {
+                font-size: 1.3vw;
             }
         }
     }

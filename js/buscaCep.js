@@ -15,10 +15,11 @@ Permite a captura atualizada e sem espacos em branco,
 só nas pontas, mas tá bom.
 */
 let inputCep = document.querySelector("#InputUserCep");
-let inputUf = document.querySelector("#selectState");
+let inputUf = document.querySelector("#searchState");
 let inputCity = document.querySelector("#InputUserCity");
 let inputLog = document.querySelector("#InputUserLog");
 
+//#endregion
 //#endregion
 
 //#region botão de envio
@@ -62,6 +63,7 @@ if (buscaCepDisplay) {
     });
 
     buscaCepBtn.addEventListener('click', () => {
+        if()
         let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
 
         if (btn_state) { //se tem o deletar
@@ -78,7 +80,6 @@ if (buscaCepDisplay) {
 //#region criação da tabela
 
 //#region cabeçalho dinamico
-let titlesTable = document.querySelector("#thTable");
 const titles = ["Cep", "UF", "Cidade", "Bairro", "Logradouro"]; //titulo dinamico para o futuro
 
 titles.forEach((element) => {
@@ -87,14 +88,29 @@ titles.forEach((element) => {
 
     th.innerHTML = element;
 
-    titlesTable.appendChild(th);
+    buscaCepTable.appendChild(th);
 })
+
+//select dinâmico tambem
+const ufs = await statesSelect();
+
+for (let uf of ufs) {
+    const opt = document.createElement('option');
+    opt.value = uf;
+    opt.textContent = uf;
+
+    inputUf.appendChild(opt);
+}
+
 //#endregion
 
 //corpo da tabela e API
 async function viaCep() {
     let cep = inputCep.value.trim();
-    
+
+    let uf = inputUf.value.trim();
+    let city = inputCity.value.trim();
+    let log = inputLog.value.trim();
 
     let url = '';
 
@@ -103,7 +119,7 @@ async function viaCep() {
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
         // URL de busca por Endereço (Retorna vários)
-        url = `{https://viacep.com.br/ws/${uf}/Sao Paulo/Brasil/json/`;
+        url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
     }
 
     try {
@@ -121,22 +137,23 @@ async function viaCep() {
 
         const dados_info = ['cep', 'uf', 'localidade', 'bairro', 'logradouro']; //informações que irão ser capturadas
 
-
-        const tr = document.createElement('tr');
-        tr.classList.add("linTable");
         //#region criando a tabela
-
         
-        dados_info.forEach((info) => {
-            const td = document.createElement('td');
-            td.classList.add("colTable");
+        dados.forEach((adress) => {
+            const tr = document.createElement('tr');
+            tr.classList.add("linTable");
 
-            td.innerHTML = dados[info] || ''; // ||'' => se der ruim fica vazio inicialmente
+            dados_info.forEach((info) => {
+                const td = document.createElement('td');
+                td.classList.add("colTable");
 
-            tr.appendChild(td);
+                td.innerHTML = adress[info] || ''; // ||'' => se der ruim fica vazio inicialmente
+
+                tr.appendChild(td);
+            })
+
+            buscaCepTable.appendChild(tr);
         })
-
-        buscaCepTable.appendChild(tr);
 
         //#endregion
 
@@ -147,8 +164,19 @@ async function viaCep() {
 }
 //#endregion
 
-//#endregion
-
 //#region funções
+async function statesSelect() {
+    try {
+        const resposta = await fetch('../json/states.json');
+        /* 
+        await = Espera uma resposta antes de ir para próxima linha
+        fetch = Pega o valor do json
+        */
 
+        const obj = await resposta.json(); //transforma em objeto JS
+        return obj;
+    } catch (erro) {
+        console.log('Erro ao carregar states.json', erro);
+    }
+}
 //#endregion

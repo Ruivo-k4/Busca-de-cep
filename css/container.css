@@ -5,7 +5,7 @@
 
     .container_buscaCep {
         display: grid;
-        gap: 10%;
+        gap: 5%;
 
         .buscaCep_search {
             display: grid;
@@ -13,28 +13,33 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 1dvw;
 
-            max-width: 50dvw;
+            max-width: 60dvw;
 
             .search_input {
                 padding: 0 5%;
             }
         }
+
         /*tem que arrumar a rolagen disso*/
         .buscaCep_display {
-            min-height: 5dvh;
+            width: 62dvw;
 
             .display_table {
-                border-collapse: collapse;
-                
-                overflow-y: auto;
-                #thTable {
-                    display: flex;
-                    gap: 2dvw;
+                display: block;
+                /*bloco respeita altura*/
 
-                    th {
-                        border: solid var(--black) 1px;
-                        padding: 0.5dvw;
-                    }
+                max-height: 50dvh;
+                overflow-y: auto;
+
+                border-collapse: collapse;
+
+                overflow-y: auto;
+
+                th,
+                td {
+                    border: solid var(--black) 1px;
+                    padding: 0.5dvw;
+                    min-width: 10dvw;
                 }
             }
         }

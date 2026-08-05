@@ -16,16 +16,26 @@
         <header class="header">
             <nav class="header_menu">
                 <ul class="menu_list">
-                    <li>Como usar</li>
-                    <li><a href="#buscaep">Achar Cep</a></li>
-                    <li>link</li>
+                    <li><a href="#buscaCep-head">O que é?</a></li>
+                    <li><a href="#buscaCep">Achar Cep</a></li>
+                    <li><a href="#buscaCep-footer">Como Usar?</a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="container">
-            <section class="container_head">
-                <h1>Titulo ai</h1>
+            <section class="container_head" id="#buscaCep-head">
+                <div><img src="imgs/Gemini_Generated_Image_65j77h65j77h65j7-removebg-preview.png" alt="Busca Cep"
+                        srcset=""></div>
+                <p>O <span id="buscaCep-span">Busca Cep</span> surge como um trabalho escolar (<a
+                        href="https://etecanhanguera.cps.sp.gov.br/informatica-para-internet/">Etec Bartolomeu</a>) com
+                    o objetivo de aplicar os conhecimentos dos alunos em integração de <a
+                        href="https://www.techtudo.com.br/listas/2020/06/o-que-e-api-e-para-que-serve-cinco-perguntas-e-respostas.ghtml">APIs</a>.
+                    Este site foi desenvolvido por <a href="https://github.com/Ruivo-k4/Busca-de-cep.git">Kaique Moura
+                        Nogueira </a> utilizando os dados do (<a href="https://viacep.com.br">Via Cep</a>)
+                    sequindo as seguintes exigencias e competencias: <a href="imgs/ViaCEP.pdf" download="imgs/ViaCEP.pdf"
+                        id="baixar-pdf">Baixar PDF</a>
+                    </a></a></p>
             </section>
 
             <!--Local da tabela-->
@@ -55,19 +65,33 @@
                     <table class="display_table" id="tableCeps">
                         <thead>
                             <tr id="thTable">
-                                
+
                             </tr>
                         </thead>
-                           
-                        <tbody>  <!--vai receber valores (tr, td) através do JS-->
-                            
+
+                        <tbody> <!--vai receber valores (tr, td) através do JS-->
+
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section class="container_footer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsa unde sed minima dolorum nihil, reiciendis eum qui earum distinctio quos, incidunt hic accusamus. Rem dolorem quasi deserunt architecto veniam!</p>
+            <section class="container_footer" id="buscaCep-footer">
+                <dl>
+                    <dt>Como usar o Busca Cep?</dt>
+                    <dd>O uso é bem simples e prático, mas existem algumas regrinhas importantes. Como os dados vêm de
+                        uma base externa (por meio de uma <a
+                            href="https://www.techtudo.com.br/listas/2020/06/o-que-e-api-e-para-que-serve-cinco-perguntas-e-respostas.ghtml">API</a>),
+                        precisamos respeitar alguns limites para garantir o
+                        resultado correto.
+                    </dd>
+                    
+                    <dt>Caso CEP</dt>
+                    <dd>Se for perquisar utilizando o CEP, é nescessario:<br>
+                    <ul>
+                        <li>Utilizar 8 digitos numéricos</li>
+                    </ul></dd>
+                </dl>
             </section>
         </main>
 

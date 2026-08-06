@@ -19,12 +19,13 @@
                     <li><a href="#buscaCep-head">O que é?</a></li>
                     <li><a href="#buscaCep">Achar Cep</a></li>
                     <li><a href="#buscaCep-footer">Como Usar?</a></li>
+                    <li><a href="#footer">Links rápidos</a></li>
                 </ul>
             </nav>
         </header>
 
         <main class="container">
-            <section class="container_head" id="#buscaCep-head">
+            <section class="container_head" id="buscaCep-head">
                 <div><img src="imgs/Gemini_Generated_Image_65j77h65j77h65j7-removebg-preview.png" alt="Busca Cep"
                         srcset=""></div>
                 <p>O <span id="buscaCep-span">Busca Cep</span> surge como um trabalho escolar (<a
@@ -33,8 +34,8 @@
                         href="https://www.techtudo.com.br/listas/2020/06/o-que-e-api-e-para-que-serve-cinco-perguntas-e-respostas.ghtml">APIs</a>.
                     Este site foi desenvolvido por <a href="https://github.com/Ruivo-k4/Busca-de-cep.git">Kaique Moura
                         Nogueira </a> utilizando os dados do (<a href="https://viacep.com.br">Via Cep</a>)
-                    sequindo as seguintes exigencias e competencias: <a href="imgs/ViaCEP.pdf" download="imgs/ViaCEP.pdf"
-                        id="baixar-pdf">Baixar PDF</a>
+                    sequindo as seguintes exigencias e competencias: <button id="baixar-pdf"><a href="imgs/ViaCEP.pdf"
+                            download="imgs/ViaCEP.pdf">Baixar PDF</a></button>
                     </a></a></p>
             </section>
 
@@ -52,8 +53,7 @@
                     <input type="text" placeholder="Santana de Parnaíba" id="InputUserCity" maxlength="100"
                         class="search_input">
 
-                    <input type="text" placeholder="Avenida Paulista" id="InputUserLog" maxlength="100"
-                        class="search_input">
+                    <input type="text" placeholder="Avenida" id="InputUserLog" maxlength="100" class="search_input">
 
                     <!--vira o botão de deletar depois de selecionado
                     caso as informações não sejam mudadas-->
@@ -85,30 +85,48 @@
                         precisamos respeitar alguns limites para garantir o
                         resultado correto.
                     </dd>
-                    
-                    <dt>Caso CEP</dt>
+
+                    <dt>Caso use CEP</dt>
                     <dd>Se for perquisar utilizando o CEP, é nescessario:<br>
-                    <ul>
-                        <li>Utilizar 8 digitos numéricos</li>
-                    </ul></dd>
+                        <ul>
+                            <li>Utilizar 8 digitos numéricos.</li>
+                            <li>Não utilizar espaços entre os números.</li>
+                            <li>Ser um cep brasileiro.</li>
+                        </ul>
+                    </dd>
+
+                    <dt>Caso use Localidade</dt>
+                    <dd>Se for utilizar a localidade, é necessário:
+                        <ul>
+                            <li>Obrigatóriamente os três campos estarem preenchidos.</li>
+                            <li>As informações serem coerentes entre sí (<a
+                                    href="https://www.significados.com.br/o-que-e-complemento-de-endereco/">Logradouro</a>
+                                existir em cidade, ela existir no <a
+                                    href="https://focusnfe.com.br/blog/quais-sao-os-codigos-de-cada-uf-no-brasil/">UF</a>)
+                            </li>
+                            <li>As informações digitadas serem brasileiras</li>
+                        </ul>
+                    </dd>
                 </dl>
             </section>
         </main>
 
-        <footer class="footer">
+        <footer class="footer" id="footer">
             <div class="footer_info"></div>
             <div class="footer_links">
                 <ul class="links_list">
-                    <li>link</li>
-                    <li>link</li>
-                    <li>link</li>
-                    <li>link</li>
-                    <li>link</li>
+                    <li><a href="https://iamdustan.com/smoothscroll/">smoothscrol-PoliFill</a></li>
+                    <li><a href="https://viacep.com.br">Via Cep</a></li>
+                    <li><a href="https://github.com/settings/admin">Git Hub</a></li>
+                    <li><a href="https://etecanhanguera.cps.sp.gov.br/informatica-para-internet/">Etec</a></li>
                 </ul>
             </div>
         </footer>
     </div>
 
+    <!--para o scrool funcionar, detalhes no site-->
+    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.polyfill.min.js"></script>
+   
     <script type="module" src="js/main.js"></script>
 </body>
 

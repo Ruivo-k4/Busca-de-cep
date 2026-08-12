@@ -105,6 +105,23 @@ for (let uf of ufs) {
 
 //#endregion
 
+//#region funções
+async function statesSelect() {
+    try {
+        const resposta = await fetch('../json/states.json');
+        /* 
+        await = Espera uma resposta antes de ir para próxima linha
+        fetch = Pega o valor do json
+        */
+
+        const obj = await resposta.json(); //transforma em objeto JS
+        return obj;
+    } catch (erro) {
+        console.log('Erro ao carregar states.json', erro);
+    }
+}
+//#endregion
+
 async function viaCep() {
     let cep = inputCep.value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
 
@@ -115,7 +132,7 @@ async function viaCep() {
     let url = '';
 
     if (cep !== '') {
-        
+
         // Pega a lista de histórico ou inicia um objeto vazio
         const historicoCeps = JSON.parse(localStorage.getItem('cepsBuscados')) || {};
 
@@ -156,7 +173,7 @@ async function viaCep() {
         }
 
         const listaEnderecos = Array.isArray(dados) ? dados : [dados];
-        const dados_info = ['cep', 'uf', 'localidade', 'bairro', 'logradouro']; 
+        const dados_info = ['cep', 'uf', 'localidade', 'bairro', 'logradouro'];
 
         //#region criando a tabela
         // Limpa a tabela antes de adicionar novas linhas
@@ -170,7 +187,7 @@ async function viaCep() {
                 const td = document.createElement('td');
                 td.classList.add("colTable");
 
-                td.innerHTML = adress[info] || ''; 
+                td.innerHTML = adress[info] || '';
 
                 tr.appendChild(td);
             });

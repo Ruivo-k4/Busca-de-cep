@@ -69,6 +69,7 @@ if (buscaCepDisplay) {
 
         if (btn_state) { //se tem o deletar
             buscaCepBtn.innerHTML = "Limpar";
+            titleDi();
             viaCep();
         } else {
             buscaCepBtn.innerHTML = "Buscar";
@@ -81,16 +82,18 @@ if (buscaCepDisplay) {
 //#region criação da tabela
 
 //#region cabeçalho dinamico
-const titles = ["Cep", "UF", "Cidade", "Bairro", "Logradouro"]; //titulo dinamico para o futuro
+function titleDi() {
+    const titles = ["Cep", "UF", "Cidade", "Bairro", "Logradouro"]; //titulo dinamico para o futuro
 
-titles.forEach((element) => {
-    const th = document.createElement('th');
-    th.classList.add("titleTable");
+    titles.forEach((element) => {
+        const th = document.createElement('th');
+        th.classList.add("titleTable");
 
-    th.innerHTML = element;
+        th.innerHTML = element;
 
-    buscaCepTable.appendChild(th);
-})
+        buscaCepTable.appendChild(th);
+    })
+}
 
 //select dinâmico tambem
 const ufs = await statesSelect();

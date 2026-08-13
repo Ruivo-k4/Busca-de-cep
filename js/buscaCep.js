@@ -109,6 +109,7 @@ for (let uf of ufs) {
 //#endregion
 
 //#region funções
+
 async function statesSelect() {
     try {
         const resposta = await fetch('../json/states.json');

@@ -1,18 +1,20 @@
-const historicoCeps = JSON.parse(localStorage.getItem('cepsBuscados')) || {};
-const historicoEstado = JSON.parse(localStorage.getItem('estadosBuscados')) || {};
-const historicoCidade = JSON.parse(localStorage.getItem('cidadesBuscadas')) || {};
-const historicoLogradouro = JSON.parse(localStorage.getItem('logradourosBuscados')) || {};
+const historicoCeps = JSON.parse(localStorage.getItem('histoCep')) || [];
+const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
+const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
+const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
 
-export function config(newHisto, newState, newCity, newPlace){
-    historicoCeps = newHisto;
+export function config(newCep, newState, newCity, newPlace){
+    historicoCeps = newCep;
     historicoEstado = newState;
     historicoCidade = newCity;
     historicoLogradouro = newPlace;
 
-    localStorage.setItem("historicoCeps", JSON.stringify(historicoCeps));
-    localStorage.setItem("historicoEstado", JSON.stringify(historicoEstado));
-    localStorage.setItem("historicoCidade", JSON.stringify(historicoCidade));
-    localStorage.setItem("historicoLogradouro", JSON.stringify(historicoLogradouro));
-    
-    
+    localStorage.setItem("histoCep", JSON.stringify(historicoCeps));
+    localStorage.setItem("histoUf", JSON.stringify(historicoEstado));
+    localStorage.setItem("histoCid", JSON.stringify(historicoCidade));
+    localStorage.setItem("histoLog", JSON.stringify(historicoLogradouro));
 }
+
+/*
+
+*/

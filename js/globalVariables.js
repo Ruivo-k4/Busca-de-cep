@@ -1,7 +1,7 @@
-const historicoCeps = JSON.parse(localStorage.getItem('histoCep')) || [];
-const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
-const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
-const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
+export const historicoCeps = JSON.parse(localStorage.getItem('histoCep')) || [];
+export const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
+export const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
+export const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
 
 export function config(newCep, newState, newCity, newPlace){
     historicoCeps = newCep;

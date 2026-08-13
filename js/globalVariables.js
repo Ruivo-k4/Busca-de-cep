@@ -1,7 +1,7 @@
 const historicoCeps = JSON.parse(localStorage.getItem('cepsBuscados')) || {};
-const historicoEstado = JSON.parse(localStorage.getItem('EstadosBuscados')) || {};
-const historicoCidade = JSON.parse(localStorage.getItem('CidadesBuscadas')) || {};
-const historicoLogradouro = JSON.parse(localStorage.getItem('LogradourosBuscados')) || {};
+const historicoEstado = JSON.parse(localStorage.getItem('estadosBuscados')) || {};
+const historicoCidade = JSON.parse(localStorage.getItem('cidadesBuscadas')) || {};
+const historicoLogradouro = JSON.parse(localStorage.getItem('logradourosBuscados')) || {};
 
 export function config(newHisto, newState, newCity, newPlace){
     historicoCeps = newHisto;

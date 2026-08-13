@@ -149,14 +149,25 @@ async function viaCep() {
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
+        
         if (uf !== '') {
             const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || {};
+            if (historicoEstado[uf]) {
+                localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
+            }
         }
-        else if (city !== '') {
+        if (city !== '') {
             const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || {};
-        } else if (log !== '') {
+            if (historicoCidade[city]) {
+                localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
+            }
+        }
+        if (log !== '') {
             const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
-        } else {}
+            if (historicoLogradouro[log]) {
+                localStorage.setItem('histoLog', JSON.stringify(historicoLogradouro));
+            }
+        }
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
     } 

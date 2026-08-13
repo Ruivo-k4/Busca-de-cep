@@ -1,5 +1,5 @@
 //#region importações
-import {config, historicoCeps, historicoCidade, historicoEstado, historicoLogradouro} from "./globalVariables.js";
+import { config, historicoCeps, historicoCidade, historicoEstado, historicoLogradouro } from "./globalVariables.js";
 //#endregion
 
 //#region captura do input
@@ -122,9 +122,9 @@ async function statesSelect() {
 }
 //#endregion
 
-    //let uf = inputUf.value.trim();
-    //let city = inputCity.value.trim();
-    //let log = inputLog.value.trim();
+//let uf = inputUf.value.trim();
+//let city = inputCity.value.trim();
+//let log = inputLog.value.trim();
 
 async function viaCep() {
     let cep = inputCep.value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -152,28 +152,38 @@ async function viaCep() {
         // Caso o usuário tenha digitado o UF vamos armazenar no local storage
         if (uf !== '') {
             const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
-            if (historicoEstado[uf]) {
+
+            // Detecta se o UF já existe no histórico antes de adicionar
+            if (!historicoEstado.includes(uf)) {
+                historicoEstado.push(uf);
                 localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
             }
         }
         // Caso o usuário tenha digitado a CIDADE vamos armazenar no local storage
         if (city !== '') {
             const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
-            if (historicoCidade[city]) {
+            historicoCidade.push = ('Cajamar')
+
+            // Detecta se a cidade já existe no histórico antes de adicionar
+            if (!historicoCidade.includes(city)) {
+                historicoCidade.push(city);
                 localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
             }
         }
         // Caso o usuário tenha digitado o LOGRADOURO vamos armazenar no local storage
         if (log !== '') {
             const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
-            if (historicoLogradouro[log]) {
+            
+            // Detecta se o logradouro já existe no histórico antes de adicionar
+            if (!historicoLogradouro.includes(log)) {
+                historicoLogradouro.push(log);
                 localStorage.setItem('histoLog', JSON.stringify(historicoLogradouro));
             }
         }
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
-    } 
-    
+    }
+
 
     try {
         const resposta = await fetch(url);

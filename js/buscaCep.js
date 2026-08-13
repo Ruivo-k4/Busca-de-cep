@@ -59,10 +59,6 @@ if (buscaCepDisplay) {
         //#endregion
     });
 
-    buscaCepSearch.addEventListener('input', () => {
-        const botao = buscaCepBtn.classList.toggle("deletar", false);
-        buscaCepBtn.innerHTML = "Buscar";
-    });
 
     buscaCepBtn.addEventListener('click', () => {
         let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
@@ -143,9 +139,6 @@ async function viaCep() {
         if (historicoCeps[cep]) {
             historicoCeps[cep] += 1;
             localStorage.setItem('cepsBuscados', JSON.stringify(historicoCeps));
-
-            alert(`Você já buscou o CEP ${cep} ${historicoCeps[cep]} vezes. A busca foi bloqueada para evitar repetições.`);
-            return;
         }
 
         // URL de busca por CEP único

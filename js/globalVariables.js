@@ -13,6 +13,4 @@ export function config(newHisto, newState, newCity, newPlace){
     localStorage.setItem("historicoEstado", JSON.stringify(historicoEstado));
     localStorage.setItem("historicoCidade", JSON.stringify(historicoCidade));
     localStorage.setItem("historicoLogradouro", JSON.stringify(historicoLogradouro));
-    
-    
 }

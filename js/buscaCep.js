@@ -149,9 +149,18 @@ async function viaCep() {
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
+        if (uf !== '') {
+            const historicoEstado = JSON.parse(localStorage.getItem('estadosBuscados')) || {};
+        }
+        else if (city !== '') {
+            const historicoCidade = JSON.parse(localStorage.getItem('cidadesBuscadas')) || {};
+        } else if (log !== '') {
+            const historicoLogradouro = JSON.parse(localStorage.getItem('logradourosBuscados')) || {};
+        } else {}
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
     } 
+    
 
     try {
         const resposta = await fetch(url);

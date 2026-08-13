@@ -151,19 +151,19 @@ async function viaCep() {
     } else {
         
         if (uf !== '') {
-            const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || {};
+            const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
             if (historicoEstado[uf]) {
                 localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
             }
         }
         if (city !== '') {
-            const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || {};
+            const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
             if (historicoCidade[city]) {
                 localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
             }
         }
         if (log !== '') {
-            const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
+            const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
             if (historicoLogradouro[log]) {
                 localStorage.setItem('histoLog', JSON.stringify(historicoLogradouro));
             }

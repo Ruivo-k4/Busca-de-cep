@@ -138,24 +138,24 @@ async function viaCep() {
     if (cep !== '') {
 
         // Pega a lista de histórico ou inicia um objeto vazio
-        const historicoCeps = JSON.parse(localStorage.getItem('cepsBuscados')) || {};
+        const historicoCeps = JSON.parse(localStorage.getItem('histoCep')) || {};
 
         // Verifica se o CEP já foi buscado anteriormente
         if (historicoCeps[cep]) {
             historicoCeps[cep] += 1;
-            localStorage.setItem('cepsBuscados', JSON.stringify(historicoCeps));
+            localStorage.setItem('histoCep', JSON.stringify(historicoCeps));
         }
 
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
         if (uf !== '') {
-            const historicoEstado = JSON.parse(localStorage.getItem('estadosBuscados')) || {};
+            const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || {};
         }
         else if (city !== '') {
-            const historicoCidade = JSON.parse(localStorage.getItem('cidadesBuscadas')) || {};
+            const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || {};
         } else if (log !== '') {
-            const historicoLogradouro = JSON.parse(localStorage.getItem('logradourosBuscados')) || {};
+            const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
         } else {}
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;

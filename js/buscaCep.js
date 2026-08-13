@@ -1,5 +1,5 @@
 //#region importações
-import {config, historicoCeps, historicoCidade, historicoEstado, historicoLogradouro} from "./globalVariables";
+import {config, historicoCeps, historicoCidade, historicoEstado, historicoLogradouro} from "./globalVariables.js";
 //#endregion
 
 //#region captura do input

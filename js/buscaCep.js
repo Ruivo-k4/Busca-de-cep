@@ -149,19 +149,21 @@ async function viaCep() {
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
-        
+        // Caso o usuário tenha digitado o UF vamos armazenar no local storage
         if (uf !== '') {
             const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || {};
             if (historicoEstado[uf]) {
                 localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
             }
         }
+        // Caso o usuário tenha digitado a CIDADE vamos armazenar no local storage
         if (city !== '') {
             const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || {};
             if (historicoCidade[city]) {
                 localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
             }
         }
+        // Caso o usuário tenha digitado o LOGRADOURO vamos armazenar no local storage
         if (log !== '') {
             const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
             if (historicoLogradouro[log]) {

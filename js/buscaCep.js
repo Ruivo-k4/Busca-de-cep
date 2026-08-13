@@ -122,12 +122,16 @@ async function statesSelect() {
 }
 //#endregion
 
+    //let uf = inputUf.value.trim();
+    //let city = inputCity.value.trim();
+    //let log = inputLog.value.trim();
+
 async function viaCep() {
     let cep = inputCep.value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
 
-    let uf = inputUf.value.trim();
-    let city = inputCity.value.trim();
-    let log = inputLog.value.trim();
+    let uf = '';
+    let city = '';
+    let log = '';
 
     let url = '';
 
@@ -147,7 +151,7 @@ async function viaCep() {
     } else {
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
-    }
+    } 
 
     try {
         const resposta = await fetch(url);

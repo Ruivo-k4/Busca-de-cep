@@ -9,7 +9,7 @@ function config(newCep) { //configura para salvar as informações no histórico
         console.log("Valor existente");
     }
 }
-//#endregion
+
 
 //#region captura do input
 let buscaCepDisplay = document.querySelector("#displayCep");//area que vai mostrar os dados

@@ -69,7 +69,7 @@
         .buscaCep_search {
             display: grid;
             grid-template-rows: 1fr;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1dvw;
             max-width: 60dvw;
 

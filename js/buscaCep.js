@@ -1,5 +1,14 @@
-//#region importações
-import {config, historicoCeps, historicoCidade, historicoEstado, historicoLogradouro} from "./globalVariables.js";
+//#region localStorage
+function config(newCep) { //configura para salvar as informações no histórico
+    let histoCep = JSON.parse(localStorage.getItem("histoCep")) || [];
+
+    if (!histoCep.includes(newCep)) {
+        histoCep.push(newCep);
+        localStorage.setItem("histoCep", JSON.stringify(histoCep));
+    } else {
+        console.log("Valor existente");
+    }
+}
 //#endregion
 
 //#region captura do input
@@ -19,7 +28,6 @@ let inputUf = document.querySelector("#searchState");
 let inputCity = document.querySelector("#InputUserCity");
 let inputLog = document.querySelector("#InputUserLog");
 
-
 //#endregion
 
 //#endregion
@@ -28,9 +36,10 @@ let inputLog = document.querySelector("#InputUserLog");
 let buscaCepBtn = document.querySelector("#searchEnviate");
 
 if (buscaCepDisplay) {
+    //#region inpedindo o user de fazer bosta
+    const input_notCep = [inputCity, inputLog, inputUf];
+
     buscaCepSearch.addEventListener('input', () => {
-        //#region inpedindo o user de fazer bosta
-        const input_notCep = [inputCity, inputLog, inputUf];
 
         if (inputCep.value !== "") {
             inputCep.disabled = false;
@@ -59,17 +68,27 @@ if (buscaCepDisplay) {
         //#endregion
     });
 
-
     buscaCepBtn.addEventListener('click', () => {
-        let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
+        if (inputCep.value !== "" || input_notCep.some(element => element.value.trim() !== "")) {
+            let btn_state = buscaCepBtn.classList.toggle("deletar");//add true
 
-        if (btn_state) { //se tem o deletar
-            buscaCepBtn.innerHTML = "Limpar";
-            titleDi();
-            viaCep();
+            if (btn_state) { //se tem o deletar
+                //não deixa os caba mudar sem limpar
+                inputCep.disabled = true;
+
+                input_notCep.forEach((element) => {
+                    element.disabled = true;
+                });
+
+                //só muda o textin e chama o viaCep
+                buscaCepBtn.innerHTML = "Limpar";
+                viaCep();
+            } else {
+                buscaCepBtn.innerHTML = "Buscar";
+                window.location.reload();
+            }
         } else {
-            buscaCepBtn.innerHTML = "Buscar";
-            window.location.reload();
+            alert("Os campos devem ter valores")
         }
     });
 }
@@ -78,18 +97,33 @@ if (buscaCepDisplay) {
 //#region criação da tabela
 
 //#region cabeçalho dinamico
-function titleDi() {
-    const titles = ["Cep", "UF", "Cidade", "Bairro", "Logradouro"]; //titulo dinamico para o futuro
+const titles = ["Cep", "UF", "Cidade", "Bairro", "Logradouro"]; //titulo dinamico para o futuro
 
-    titles.forEach((element) => {
-        const th = document.createElement('th');
-        th.classList.add("titleTable");
+titles.forEach((element) => {
+    const th = document.createElement('th');
+    th.classList.add("titleTable");
 
-        th.innerHTML = element;
+    th.innerHTML = element;
 
-        buscaCepTable.appendChild(th);
-    })
+    buscaCepTable.appendChild(th);
+})
+
+//#region funções
+async function statesSelect() {
+    try {
+        const resposta = await fetch('../json/states.json');
+        /* 
+        await = Espera uma resposta antes de ir para próxima linha
+        fetch = Pega o valor do json
+        */
+        const obj = await resposta.json(); //transforma em objeto JS
+        return obj;
+
+    } catch (erro) {
+        console.log('Erro ao carregar states.json', erro);
+    }
 }
+//#endregion
 
 //select dinâmico tambem
 const ufs = await statesSelect();
@@ -104,74 +138,24 @@ for (let uf of ufs) {
 
 //#endregion
 
-//#region funções
-
-async function statesSelect() {
-    try {
-        const resposta = await fetch('../json/states.json');
-        /* 
-        await = Espera uma resposta antes de ir para próxima linha
-        fetch = Pega o valor do json
-        */
-
-        const obj = await resposta.json(); //transforma em objeto JS
-        return obj;
-    } catch (erro) {
-        console.log('Erro ao carregar states.json', erro);
-    }
-}
-//#endregion
-
-    //let uf = inputUf.value.trim();
-    //let city = inputCity.value.trim();
-    //let log = inputLog.value.trim();
-
 async function viaCep() {
     let cep = inputCep.value.trim().replace(/\D/g, ''); // Remove caracteres não numéricos
 
-    let uf = '';
-    let city = '';
-    let log = '';
+    let uf = inputUf.value.trim();
+    let city = inputCity.value.trim();
+    let log = inputLog.value.trim();
 
     let url = '';
 
     if (cep !== '') {
-
-        // Pega a lista de histórico ou inicia um objeto vazio
-        const historicoCeps = JSON.parse(localStorage.getItem('histoCep')) || {};
-
-        // Verifica se o CEP já foi buscado anteriormente
-        if (historicoCeps[cep]) {
-            historicoCeps[cep] += 1;
-            localStorage.setItem('histoCep', JSON.stringify(historicoCeps));
-        }
+        config(cep);
 
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
-        
-        if (uf !== '') {
-            const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
-            if (historicoEstado[uf]) {
-                localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
-            }
-        }
-        if (city !== '') {
-            const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
-            if (historicoCidade[city]) {
-                localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
-            }
-        }
-        if (log !== '') {
-            const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
-            if (historicoLogradouro[log]) {
-                localStorage.setItem('histoLog', JSON.stringify(historicoLogradouro));
-            }
-        }
         // URL de busca por Endereço (Retorna vários)
         url = `https://viacep.com.br/ws/${uf}/${city}/${log}/json/`;
-    } 
-    
+    }
 
     try {
         const resposta = await fetch(url);
@@ -184,13 +168,6 @@ async function viaCep() {
 
         if (dados.erro) {
             throw new Error('CEP não encontrado.');
-        }
-
-        // Cadastra o CEP no LocalStorage
-        if (cep !== '') {
-            const historicoCeps = JSON.parse(localStorage.getItem('cepsBuscados')) || {};
-            historicoCeps[cep] = 1; // Marca que foi buscado 1 vez
-            localStorage.setItem('cepsBuscados', JSON.stringify(historicoCeps));
         }
 
         const listaEnderecos = Array.isArray(dados) ? dados : [dados];

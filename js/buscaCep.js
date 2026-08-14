@@ -149,7 +149,7 @@ async function viaCep() {
         // URL de busca por CEP único
         url = `https://viacep.com.br/ws/${cep}/json/`;
     } else {
-        // Caso o usuário tenha digitado o UF vamos armazenar no local storage
+        
         if (uf !== '') {
             const historicoEstado = JSON.parse(localStorage.getItem('histoUf')) || [];
 
@@ -159,7 +159,6 @@ async function viaCep() {
                 localStorage.setItem('histoUf', JSON.stringify(historicoEstado));
             }
         }
-        // Caso o usuário tenha digitado a CIDADE vamos armazenar no local storage
         if (city !== '') {
             const historicoCidade = JSON.parse(localStorage.getItem('histoCid')) || [];
             historicoCidade.push = ('Cajamar')
@@ -170,13 +169,14 @@ async function viaCep() {
                 localStorage.setItem('histoCid', JSON.stringify(historicoCidade));
             }
         }
-        // Caso o usuário tenha digitado o LOGRADOURO vamos armazenar no local storage
         if (log !== '') {
             const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || [];
             
             // Detecta se o logradouro já existe no histórico antes de adicionar
             if (!historicoLogradouro.includes(log)) {
                 historicoLogradouro.push(log);
+            const historicoLogradouro = JSON.parse(localStorage.getItem('histoLog')) || {};
+            if (historicoLogradouro[log]) {
                 localStorage.setItem('histoLog', JSON.stringify(historicoLogradouro));
             }
         }
@@ -232,5 +232,4 @@ async function viaCep() {
     } catch (error) {
         console.error('Erro ao buscar endereço:', error);
         buscaCepTable.innerHTML = `<p style="color: red;">${error.message}</p>`;
-    }
-}
+    }}}
